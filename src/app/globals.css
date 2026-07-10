@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Design tokens as RGB triplets (no # or rgb()) so Tailwind's
+ * `rgb(var(--x) / <alpha-value>)` pattern can apply opacity utilities.
+ */
+:root {
+  /* Raw palette */
+  --color-cream: 248 245 242;
+  --color-beige: 234 227 217;
+  --color-antique: 139 111 71;
+  --color-gold: 197 164 109;
+  --color-charcoal: 34 34 34;
+  --color-ivory: 255 253 249;
+  --color-espresso: 74 55 40;
+
+  /* Semantic — Light mode */
+  --bg: var(--color-cream);
+  --surface: var(--color-ivory);
+  --surface-muted: var(--color-beige);
+  --fg: var(--color-charcoal);
+  --fg-muted: 90 80 70;
+  --border: 224 216 203;
+  --accent: var(--color-antique);
+  --accent-gold: var(--color-gold);
+  --button: var(--color-espresso);
+  --button-fg: var(--color-ivory);
+}
+
+.dark {
+  /* Semantic — Dark mode. Not an inverted default: a genuine "reading room
+     at night" palette — deep espresso/charcoal ground, warm ivory text,
+     gold accent gets slightly brighter to hold its temperature at low light. */
+  --bg: 26 22 19;
+  --surface: 36 30 26;
+  --surface-muted: 46 39 33;
+  --fg: 240 235 227;
+  --fg-muted: 190 178 164;
+  --border: 60 51 43;
+  --accent: 197 164 109;
+  --accent-gold: 214 184 132;
+  --button: var(--color-gold);
+  --button-fg: 26 22 19;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-foreground;
+  }
+
+  /* Visible keyboard focus everywhere — accessibility floor */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: rgb(var(--accent-gold) / 0.35);
+  }
+}
+
+@layer components {
+  /* Signature element: the "rule + eyebrow" — a thin hairline rule paired
+     with wide-tracked uppercase label, used above section headings and
+     article category tags. Evokes an old library card catalog / masthead
+     rule, and reappears consistently enough to become a recognizable
+     "Timeless Edit" mark across the site. */
+  .eyebrow-rule {
+    @apply flex items-center gap-3 text-eyebrow uppercase text-accent font-body font-medium;
+  }
+  .eyebrow-rule::after {
+    content: "";
+    @apply h-px flex-1 bg-border;
+  }
+}
