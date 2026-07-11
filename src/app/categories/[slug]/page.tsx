@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.toLowerCase().replace(/\s+/g, "-") }));
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = categories.find((c) => c.toLowerCase().replace(/\s+/g, "-") === params.slug);
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const category = categories.find((c) => c.toLowerCase().replace(/\s+/g, "-") === slug);
   if (!category) notFound();
 
   const categoryPosts = getPostsByCategory(category);
