@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+     const { slug } = await params;
+     const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const related = posts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
