@@ -15,11 +15,11 @@ export default function ContactPage() {
         </div>
         <div>
           <h3 className="font-display text-lg font-semibold mb-1">Editorial & Guest Contributions</h3>
-          <p className="text-foreground-muted">editorial@thetimelessedit.com</p>
+          <p className="text-foreground-muted">hello@thetimelessedit.com</p>
         </div>
         <div>
           <h3 className="font-display text-lg font-semibold mb-1">Advertising & Partnerships</h3>
-          <p className="text-foreground-muted">partnerships@thetimelessedit.com</p>
+          <p className="text-foreground-muted">hello@thetimelessedit.com</p>
         </div>
       </div>
 
