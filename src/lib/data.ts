@@ -17,6 +17,25 @@ export const categories = [
 ];
 
 export const posts: Post[] = [
+export interface Post {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: string;
+  date: string;
+  readingTime: string;
+  image: string;
+  badge?: "Editor's Choice" | "Trending" | "New" | "Popular";
+}
+
+export const categories = [
+  "Health", "Science", "Technology", "Artificial Intelligence", "Lifestyle",
+  "Psychology", "Travel", "Food", "Business", "Books", "Self Improvement",
+];
+
+export const posts: Post[] = [
   {
     slug: "why-pcos-is-now-pmos",
     title: "Why PCOS Is Now PMOS? Understanding the New Perspective",
@@ -121,6 +140,15 @@ export const posts: Post[] = [
     readingTime: "6 min read",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800",
   },
+];
+
+export function getPostBySlug(slug: string) {
+  return posts.find((p) => p.slug === slug);
+}
+
+export function getPostsByCategory(category: string) {
+  return posts.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+}
 ];
 
 export function getPostBySlug(slug: string) {
