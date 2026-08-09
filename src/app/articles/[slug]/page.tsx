@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PostCard } from "@/components/layout/PostCard";
+import { ArticleContent } from "@/components/layout/ArticleContent";
 import { posts, getPostBySlug } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -33,7 +34,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </div>
 
       <div className="max-w-prose mx-auto">
-        <p className="text-lg leading-relaxed text-foreground">{post.content}</p>
+        <ArticleContent content={post.content} />
       </div>
 
       {related.length > 0 && (
